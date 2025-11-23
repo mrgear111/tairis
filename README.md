@@ -47,11 +47,17 @@ Tairis is a web-based application designed to guide users through basic first-ai
 ```
 /README.md                # Project overview
 /backend/                 # Express.js backend & Prisma ORM
+  /src/
+    /routes/             # API route definitions
+    /controllers/        # Business logic
+    /middleware/         # Custom middleware
+    server.js            # Main server file
+  /prisma/
+    schema.prisma        # Database schema
+  package.json
+  .env.example
 /frontend/                # React + Vite frontend
 ```
-
-## Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 MIT
