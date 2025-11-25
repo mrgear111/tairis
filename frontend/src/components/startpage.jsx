@@ -1,11 +1,11 @@
-import Navbar from "./Navbar";
 import Features from "./Features";
+import HowItWorks from "./HowItWorks";
 
 function StartPage() {
   return (
     <>
-      <Navbar />
       <Features />
+      <HowItWorks />
     </>
   );
 }

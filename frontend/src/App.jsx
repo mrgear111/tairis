@@ -4,9 +4,12 @@ import Auth from './pages/Auth.jsx';
 import GetStarted from './pages/GetStarted.jsx';
 import NearbyDoctors from './pages/NearbyDoctors.jsx';
 
+import Navbar from './components/Navbar.jsx';
+
 function App() {
   return (
     <Router>
+      <Navbar />
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/auth" element={<Auth />} />
