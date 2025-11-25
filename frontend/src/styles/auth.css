@@ -3,7 +3,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+  background: #fef2f2;
+  /* Light red background */
   padding: 20px;
   position: relative;
   overflow: hidden;
@@ -17,7 +18,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(from 0deg, transparent, rgba(255, 255, 255, 0.1), transparent 30%);
+  background: conic-gradient(from 0deg, transparent, rgba(239, 68, 68, 0.05), transparent 30%);
   animation: rotate 20s linear infinite;
   pointer-events: none;
 }
@@ -26,8 +27,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 30%, rgba(239, 68, 68, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(239, 68, 68, 0.04) 0%, transparent 50%);
   pointer-events: none;
   animation: pulse 4s ease-in-out infinite;
 }
@@ -43,11 +44,11 @@
 }
 
 .auth-box {
-  background: rgba(255, 255, 255, 0.98);
+  background: white;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 20px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05) inset;
   width: 100%;
   max-width: 450px;
   overflow: hidden;
@@ -68,49 +69,33 @@
   }
 }
 
-.auth-tabs {
+.tab-header {
   display: flex;
-  background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f5 100%);
-  border-bottom: 2px solid #e9ecef;
+  background: #f3f4f6;
+  padding: 4px;
+  margin: 20px;
+  border-radius: 12px;
   position: relative;
 }
 
 .tab-btn {
   flex: 1;
-  padding: 18px;
+  padding: 12px;
   border: none;
-  background: none;
+  background: transparent;
   cursor: pointer;
-  font-size: 16px;
   font-weight: 600;
-  color: #666;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #6b7280;
+  transition: all 0.3s ease;
   position: relative;
   z-index: 1;
-}
-
-.tab-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.tab-btn:hover::before {
-  opacity: 1;
-}
-
-.tab-btn:hover {
-  color: #06b6d4;
-  transform: translateY(-2px);
+  border-radius: 10px;
 }
 
 .tab-btn.active {
-  color: #06b6d4;
   background: white;
-  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  color: #ef4444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .tab-btn.active::after {
@@ -265,7 +250,7 @@
 .submit-btn {
   width: 100%;
   padding: 14px;
-  background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
   color: white;
   border: none;
   border-radius: 10px;
@@ -276,7 +261,7 @@
   margin-top: 10px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.35);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
   animation: fadeInUp 0.6s ease-out;
 }
 
@@ -300,12 +285,12 @@
 
 .submit-btn:hover {
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.45);
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.45);
 }
 
 .submit-btn:active {
   transform: translateY(-1px) scale(1);
-  box-shadow: 0 4px 15px rgba(6, 182, 212, 0.35);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
 }
 
 .form-footer {

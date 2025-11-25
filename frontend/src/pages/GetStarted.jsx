@@ -197,7 +197,7 @@ function GetStarted() {
       <div className="getstarted-container">
         {messages.length <= 1 ? (
           <div className="empty-state">
-            <h1>What can I help with?</h1>
+            <h1 style={{ color: "#ffffff" }}>Select Your Emergency Type</h1>
             <form onSubmit={handleSendMessage} className="chat-form centered-form">
               <div className="input-wrapper">
                 <input
