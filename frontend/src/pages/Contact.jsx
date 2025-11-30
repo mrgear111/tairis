@@ -1,4 +1,9 @@
 import "../styles/contact.css";
+import emailIcon from "../assets/email_icon.png";
+import mobileIcon from "../assets/mobile_icon.png";
+import addressIcon from "../assets/address_icon.png";
+import businessHoursIcon from "../assets/business_hours_icon.png";
+import emergencyIcon from "../assets/emergency_icon.png";
 
 function Contact() {
     return (
@@ -15,32 +20,39 @@ function Contact() {
                         <h2>Contact Information</h2>
 
                         <div className="contact-item">
-                            <div className="contact-icon">📧</div>
+                            <div className="contact-icon">
+                                <img src={emailIcon} alt="Email" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                            </div>
                             <div className="contact-details">
                                 <h3>Email</h3>
-                                <p className="placeholder">your.email@example.com</p>
+                                <p className="placeholder">tairis@gmail.com</p>
                             </div>
                         </div>
 
                         <div className="contact-item">
-                            <div className="contact-icon">📱</div>
+                            <div className="contact-icon">
+                                <img src={mobileIcon} alt="Phone" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                            </div>
                             <div className="contact-details">
                                 <h3>Phone</h3>
-                                <p className="placeholder">+1 (xxx) xxx-xxxx</p>
+                                <p className="placeholder">9758900419</p>
                             </div>
                         </div>
 
                         <div className="contact-item">
-                            <div className="contact-icon">📍</div>
+                            <div className="contact-icon">
+                                <img src={addressIcon} alt="Address" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                            </div>
                             <div className="contact-details">
                                 <h3>Address</h3>
-                                <p className="placeholder">Your Address Here</p>
-                                <p className="placeholder">City, State, ZIP</p>
+                                <p className="placeholder">Any random address</p>
                             </div>
                         </div>
 
                         <div className="contact-item">
-                            <div className="contact-icon">⏰</div>
+                            <div className="contact-icon">
+                                <img src={businessHoursIcon} alt="Hours" style={{ width: '40px', height: '40px', objectFit: 'contain' }} />
+                            </div>
                             <div className="contact-details">
                                 <h3>Business Hours</h3>
                                 <p className="placeholder">Monday - Friday: 9:00 AM - 6:00 PM</p>
@@ -106,7 +118,9 @@ function Contact() {
 
                 {/* Emergency Notice */}
                 <section className="emergency-notice">
-                    <div className="notice-icon">🚨</div>
+                    <div className="notice-icon">
+                        <img src={emergencyIcon} alt="Emergency" style={{ width: '50px', height: '50px', objectFit: 'contain' }} />
+                    </div>
                     <div className="notice-content">
                         <h3>Emergency?</h3>
                         <p>
