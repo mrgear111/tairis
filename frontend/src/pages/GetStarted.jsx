@@ -83,7 +83,7 @@ function GetStarted() {
     }
   };
 
-  const handleSendMessage = (e) => {
+  const handleSendMessage = async (e) => {
     e.preventDefault();
 
     if (!inputValue.trim()) return;
@@ -109,18 +109,57 @@ function GetStarted() {
     // Update chat in storage
     updateCurrentChat(updatedMessages);
 
-    // Simulate bot response
-    setTimeout(() => {
-      const botMessage = {
-        id: updatedMessages.length + 1,
-        text: "Thank you for providing that information. I'm analyzing your situation. Please provide more details about the emergency.",
-        sender: "bot",
-        timestamp: new Date()
-      };
-      const finalMessages = [...updatedMessages, botMessage];
-      setMessages(finalMessages);
-      updateCurrentChat(finalMessages);
-    }, 800);
+    // Simulate bot response (replaced with real API call)
+    // Add a temporary loading message
+    const loadingMessageId = Date.now() + 1;
+    const loadingMessage = {
+      id: loadingMessageId,
+      text: "Thinking...",
+      sender: "bot",
+      timestamp: new Date()
+    };
+    setMessages(prev => [...prev, loadingMessage]);
+
+    try {
+      const response = await fetch("https://tairis-server-production.up.railway.app/api/ai/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: inputValue,
+          history: messages // Send previous context
+        }),
+      });
+
+      const data = await response.json();
+
+      // Remove loading message and add real response
+      setMessages(prev => {
+        const filtered = prev.filter(msg => msg.id !== loadingMessageId);
+        const botMessage = {
+          id: loadingMessageId, // Reuse ID or generate new
+          text: data.text || "Sorry, I couldn't process that.",
+          sender: "bot",
+          timestamp: new Date()
+        };
+        const finalMessages = [...filtered, botMessage];
+        updateCurrentChat(finalMessages);
+        return finalMessages;
+      });
+
+    } catch (err) {
+      console.error("Error fetching AI response:", err);
+      setMessages(prev => {
+        const filtered = prev.filter(msg => msg.id !== loadingMessageId);
+        return [...filtered, {
+          id: Date.now(),
+          text: "Sorry, I'm having trouble connecting to the server.",
+          sender: "bot",
+          timestamp: new Date()
+        }];
+      });
+    }
   };
 
   const handleSelectChat = (chat) => {
