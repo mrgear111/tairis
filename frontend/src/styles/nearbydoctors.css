@@ -1,6 +1,6 @@
 .nearby-doctors-wrapper {
     min-height: 100vh;
-    background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+    background: var(--bg-color);
     padding-top: 80px;
     /* Space for navbar */
 }
@@ -13,7 +13,7 @@
 
 .header {
     text-align: center;
-    color: white;
+    color: var(--text-primary);
     margin-bottom: 50px;
 }
 
@@ -21,7 +21,9 @@
     font-size: 2.5rem;
     margin-bottom: 10px;
     font-weight: 800;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: none;
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
 }
 
 .header p {
@@ -36,16 +38,17 @@
 }
 
 .doctor-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
+    background: white;
+    border-radius: 4px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .doctor-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-md);
 }
 
 .doctor-image {

@@ -8,21 +8,13 @@
 .getstarted-wrapper {
   display: flex;
   min-height: 100vh;
-  background: #fef2f2;
-  /* Light red background */
+  background: var(--bg-color);
+  /* Cream background */
 }
 
 .resizer {
   width: 5px;
   cursor: col-resize;
-  background: rgba(239, 68, 68, 0.1);
-  transition: background 0.2s;
-  z-index: 10;
-}
-
-.resizer:hover,
-.resizer:active {
-  background: rgba(239, 68, 68, 0.3);
 }
 
 .getstarted-container {
@@ -51,7 +43,8 @@
 .empty-state h1 {
   font-size: 2rem;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--text-primary);
+  font-family: 'Playfair Display', serif;
   text-align: center;
   text-shadow: none;
 }
@@ -63,7 +56,7 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid #e5e7eb;
-  border-radius: 26px;
+  border-radius: 4px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -74,7 +67,7 @@
 .chat-form:focus-within {
   background: white;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-  border-color: #fca5a5;
+  border-color: var(--primary-color);
 }
 
 .input-wrapper {
@@ -113,7 +106,7 @@
 
 .icon-btn:hover {
   background: #f3f4f6;
-  color: #ef4444;
+  color: var(--primary-color);
 }
 
 .plus-btn {
@@ -159,10 +152,10 @@
 }
 
 .user-message .message-content {
-  background: #ef4444;
+  background: var(--primary-color);
   backdrop-filter: none;
   color: white;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 10px 20px;
   max-width: 70%;
   border: none;
@@ -175,7 +168,7 @@
 .bot-message .message-content {
   background: white;
   color: #374151;
-  border-radius: 20px;
+  border-radius: 4px;
   padding: 12px 20px;
   max-width: 70%;
   line-height: 1.6;

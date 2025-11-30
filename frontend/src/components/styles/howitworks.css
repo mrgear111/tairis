@@ -1,7 +1,7 @@
 .how-it-works-section {
     width: 100%;
     padding: 80px 24px;
-    background: linear-gradient(180deg, #fff1f2 0%, #ffe4e6 50%, #fff1f2 100%);
+    background: var(--bg-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,8 @@
 
 .how-it-works-header h2 {
     font-size: 2.8rem;
-    color: #1e293b;
+    color: var(--text-primary);
+    font-family: 'Playfair Display', serif;
     font-weight: 800;
     margin-bottom: 1rem;
     letter-spacing: -0.5px;
@@ -65,8 +66,8 @@
 
 .step-card {
     background: #ffffff;
-    border: 1px solid #f1f5f9;
-    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
     padding: 32px 24px;
     text-align: center;
     position: relative;
@@ -75,19 +76,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow-sm);
 }
 
 .step-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    border-color: #fee2e2;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--primary-color);
 }
 
 .step-number {
     width: 50px;
     height: 50px;
-    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    background: var(--primary-gradient);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -96,12 +97,12 @@
     font-size: 1.5rem;
     font-weight: 700;
     margin-bottom: 20px;
-    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+    box-shadow: var(--shadow-md);
 }
 
 .step-card h3 {
     font-size: 1.25rem;
-    color: #1e293b;
+    color: var(--text-primary);
     margin: 0 0 12px 0;
     font-weight: 700;
 }

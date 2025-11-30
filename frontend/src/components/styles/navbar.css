@@ -1,13 +1,13 @@
 /* Navbar Container */
 /* Navbar Container */
 .navbar {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 50%, #b91c1c 100%);
+  background: #f3f4f6;
   padding: 0;
   position: fixed;
   /* Changed from sticky to fixed */
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  box-shadow: var(--shadow-sm);
   width: 100%;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -16,15 +16,7 @@
 }
 
 .navbar::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-  animation: rotate 20s linear infinite;
-  pointer-events: none;
+  display: none;
 }
 
 @keyframes rotate {
@@ -54,7 +46,7 @@
 }
 
 .navbar-logo a {
-  color: #fff;
+  color: var(--primary-color);
   text-decoration: none;
   font-size: 2rem;
   font-weight: 900;
@@ -62,9 +54,10 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  text-shadow: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  font-family: 'Playfair Display', serif;
 }
 
 .navbar-logo a::before {
@@ -78,7 +71,7 @@
 }
 
 .navbar-logo a:hover {
-  color: #f0f4ff;
+  color: var(--accent-color);
   transform: translateY(-1px);
 }
 
@@ -101,13 +94,13 @@
 }
 
 .nav-link {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   font-weight: 500;
   font-size: 1rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.75rem 1.25rem;
-  border-radius: 8px;
+  border-radius: 4px;
   position: relative;
   display: inline-block;
   overflow: hidden;
@@ -121,7 +114,7 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.05);
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
 }
@@ -132,7 +125,7 @@
 }
 
 .nav-link:hover {
-  color: #fff;
+  color: var(--primary-color);
   transform: translateY(-2px);
 }
 
@@ -144,7 +137,7 @@
   transform: translateX(-50%);
   width: 0;
   height: 2px;
-  background: #fff;
+  background: var(--primary-color);
   border-radius: 2px;
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -155,9 +148,9 @@
 
 /* Auth Button */
 .auth-btn {
-  background: rgba(255, 255, 255, 0.95);
-  color: #ef4444;
-  border-radius: 10px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 4px;
   padding: 0.75rem 1.75rem;
   font-weight: 600;
   font-size: 1rem;
@@ -165,7 +158,7 @@
   border: none;
   display: inline-block;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+  box-shadow: var(--shadow-sm);
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -179,7 +172,7 @@
   width: 0;
   height: 0;
   border-radius: 50%;
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(255, 255, 255, 0.2);
   transform: translate(-50%, -50%);
   transition: width 0.6s ease, height 0.6s ease;
 }
@@ -190,10 +183,10 @@
 }
 
 .auth-btn:hover {
-  background: #fff;
+  background: var(--accent-color);
   transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.3) inset;
-  color: #dc2626;
+  box-shadow: var(--shadow-md);
+  color: white;
 }
 
 .auth-btn:active {
@@ -220,7 +213,7 @@
 .hamburger-line {
   width: 28px;
   height: 3px;
-  background: #fff;
+  background: var(--text-primary);
   margin: 4px 0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 3px;
