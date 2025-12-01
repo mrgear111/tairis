@@ -54,11 +54,6 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/contact" className="nav-link">
-              Contact
-            </Link>
-          </li>
-          <li className="nav-item">
             {token ? (
               <button onClick={handleLogout} className="nav-link auth-btn" style={{ border: "none", cursor: "pointer" }}>
                 Logout ({user.user_metadata?.full_name?.split(' ')[0] || "User"})
