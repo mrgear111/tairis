@@ -40,11 +40,33 @@ function NearbyDoctors() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedFacilityId, setSelectedFacilityId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredFacilities, setFilteredFacilities] = useState([]);
   const [status, setStatus] = useState('');
 
   useEffect(() => {
     checkConsentAndLoad();
   }, []);
+
+  // Filter facilities when search query or facilities change
+  useEffect(() => {
+    if (!searchQuery.trim()) {
+      setFilteredFacilities(facilities);
+    } else {
+      const query = searchQuery.toLowerCase();
+      const filtered = facilities.filter(f => 
+        f.name.toLowerCase().includes(query) || 
+        f.type.toLowerCase().includes(query) ||
+        (f.services && f.services.some(s => s.toLowerCase().includes(query)))
+      );
+      setFilteredFacilities(filtered);
+    }
+    
+    // Persist to localStorage for Chat context
+    if (facilities.length > 0) {
+      localStorage.setItem('tairis_nearby_facilities', JSON.stringify(facilities));
+    }
+  }, [searchQuery, facilities]);
 
   const checkConsentAndLoad = async () => {
     if (LocationAcquirer.hasConsent()) {
@@ -172,6 +194,16 @@ function NearbyDoctors() {
 
       <div className="nearby-content">
         <div className="nearby-sidebar">
+          <div className="nearby-search-container">
+            <input
+              type="text"
+              placeholder="Search hospitals, services (e.g. MRI)..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="nearby-search-input"
+            />
+          </div>
+
           {loading && <div className="search-status">⏳ {status}</div>}
           {error && <div className="search-error">⚠️ {error}</div>}
           
@@ -180,7 +212,7 @@ function NearbyDoctors() {
           )}
 
           <FacilityList 
-            facilities={facilities} 
+            facilities={filteredFacilities} 
             selectedId={selectedFacilityId}
             onSelect={(f) => setSelectedFacilityId(f.id)}
           />
