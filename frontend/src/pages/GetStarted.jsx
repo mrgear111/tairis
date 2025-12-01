@@ -244,19 +244,29 @@ function GetStarted() {
       <div className="getstarted-container">
         {messages.length <= 1 ? (
           <div className="empty-state">
-            <h1 style={{ color: "#ffffff" }}>Select Your Emergency Type</h1>
+            <h1 className="greeting-title">Ready when you are.</h1>
             <form onSubmit={handleSendMessage} className="chat-form centered-form">
               <div className="input-wrapper">
+                <span className="plus-icon">+</span>
                 <input
                   type="text"
                   className="chat-input"
                   placeholder="Ask anything"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
+                  autoFocus
                 />
                 <div className="right-icons">
-                  <button type="submit" className="send-btn-icon">
-                    <img src={arrowBtn} alt="Send" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  <button type="button" className="icon-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 14C14.2091 14 16 12.2091 16 10V4C16 1.79086 14.2091 0 12 0C9.79086 0 8 1.79086 8 4V10C8 12.2091 9.79086 14 12 14Z" fill="currentColor" />
+                      <path d="M19 10C19 13.866 15.866 17 12 17C8.13401 17 5 13.866 5 10H3C3 14.5817 6.44772 18.3696 10.875 18.9248V22H13.125V18.9248C17.5523 18.3696 21 14.5817 21 10H19Z" fill="currentColor" />
+                    </svg>
+                  </button>
+                  <button type="submit" className="icon-btn" disabled={!inputValue.trim()}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor" />
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -287,6 +297,7 @@ function GetStarted() {
 
               <form onSubmit={handleSendMessage} className="chat-form bottom-form">
                 <div className="input-wrapper">
+                  <span className="plus-icon">+</span>
                   <input
                     type="text"
                     className="chat-input"
@@ -294,9 +305,19 @@ function GetStarted() {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                   />
-                  <button type="submit" className="send-btn-icon">
-                    <img src={arrowBtn} alt="Send" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
-                  </button>
+                  <div className="right-icons">
+                    <button type="button" className="icon-btn">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 14C14.2091 14 16 12.2091 16 10V4C16 1.79086 14.2091 0 12 0C9.79086 0 8 1.79086 8 4V10C8 12.2091 9.79086 14 12 14Z" fill="currentColor" />
+                        <path d="M19 10C19 13.866 15.866 17 12 17C8.13401 17 5 13.866 5 10H3C3 14.5817 6.44772 18.3696 10.875 18.9248V22H13.125V18.9248C17.5523 18.3696 21 14.5817 21 10H19Z" fill="currentColor" />
+                      </svg>
+                    </button>
+                    <button type="submit" className="icon-btn" disabled={!inputValue.trim()}>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 21L23 12L2 3V10L17 12L2 14V21Z" fill="currentColor" />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </form>
             </div>
