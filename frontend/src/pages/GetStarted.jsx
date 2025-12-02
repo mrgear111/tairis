@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import ChatHistory from "../components/ChatHistory";
 import "../styles/getstarted.css";
 import arrowBtn from "../assets/arrow_btn.png";
+import { RedFlagDetector } from "../services/RedFlagDetector";
+import { ImmediateActionHandler } from "../services/ImmediateActionHandler";
 
 function GetStarted() {
   const navigate = useNavigate();
@@ -120,6 +122,67 @@ function GetStarted() {
     };
     setMessages(prev => [...prev, loadingMessage]);
 
+
+
+    // Check for Red Flags locally first
+    if (RedFlagDetector.detect(inputValue)) {
+      const reason = RedFlagDetector.getDetectedKeyword(inputValue);
+      const immediateResponse = ImmediateActionHandler.handle(reason);
+      
+      // Simulate bot response with immediate action
+      setTimeout(() => {
+        setMessages(prev => {
+          const filtered = prev.filter(msg => msg.id !== loadingMessageId);
+          const botMessage = {
+            id: loadingMessageId,
+            text: immediateResponse.message,
+            sender: "bot",
+            timestamp: new Date(),
+            isEmergency: true, // Flag for UI styling if needed
+            actionData: immediateResponse // Store full JSON for UI to render buttons
+          };
+          const finalMessages = [...filtered, botMessage];
+          updateCurrentChat(finalMessages);
+          return finalMessages;
+        });
+      }, 500); // Fast response
+      return; // Stop here, don't call API
+    }
+
+    // Prepare context with nearby facilities
+    let contextMessage = inputValue;
+    const savedFacilities = localStorage.getItem('tairis_nearby_facilities');
+    
+    if (savedFacilities) {
+      try {
+        const facilities = JSON.parse(savedFacilities).slice(0, 15); // Increased to Top 15
+        const facilityContext = facilities.map(f => 
+          `- ${f.name} (${f.type}): ${(f.distance_m/1000).toFixed(1)}km. Services: ${f.services ? f.services.join(', ') : 'N/A'}`
+        ).join('\n');
+
+        const systemContext = `
+[System Context]
+You are Tairis, an emergency medical triage assistant. Your goal is SPEED and SAFETY.
+The user is near the following medical facilities:
+${facilityContext}
+
+Instructions:
+1. Analyze symptoms.
+2. If RED FLAG (unconscious, chest pain, etc) -> Recommend CALL EMERGENCY immediately.
+3. If user asks for facilities, list ALL relevant ones from the context.
+4. Format lists clearly with bullet points.
+5. NEVER invent phone numbers.
+6. Keep answers short and actionable.
+[/System Context]
+
+User Query: ${inputValue}`;
+        
+        contextMessage = systemContext;
+      } catch (e) {
+        console.error("Error parsing facility data", e);
+      }
+    }
+
     try {
       const response = await fetch("https://tairis-server-production.up.railway.app/api/ai/chat", {
         method: "POST",
@@ -127,8 +190,8 @@ function GetStarted() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          message: inputValue,
-          history: messages // Send previous context
+          message: contextMessage, // Send context in the message field
+          history: messages // Send original history without modification
         }),
       });
 
